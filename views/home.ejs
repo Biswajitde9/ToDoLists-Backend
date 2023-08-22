@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css" />
+    <script
+      src="https://kit.fontawesome.com/a9c80f7e67.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1 id="header">To Do Lists Application</h1>
+      </header>
+      <hr />
+      <main>
+        <form action="/create-newtodo" method="POST">
+          <div class="description">
+            <label for="toDoName">Descriptions</label>
+            <input
+              type="text"
+              name="toDoName"
+              placeholder="What do you need to do?"
+            />
+          </div>
+          <hr />
+          <div class="select-category">
+            <div>
+              <label for="category">Category</label>
+                          <!-- The category of the task. -->
+              <select name="category" id="">
+                <option value="" disabled selected>Select your option</option>
+                <option>Personal</option>
+                <option>Work</option>
+                <option>Cleaning</option>
+                <option>Others</option>
+              </select>
+            </div>
+            <div>
+              <label for="date">Due Date</label>
+                          <!-- The due date of the task. -->
+              <input type="date" name="date"/>
+            </div>
+          </div>
+          <hr />
+          <button type="submit" class="button" style="color: blue">
+            <i class="fa fa-plus-square"></i>Add task
+          </button>
+          <button type="button" onclick="performDelete()" class="button" style="color: red">
+                      <!-- This button deletes all tasks. -->
+            <i class="fa-solid fa-trash-can"></i>Delete tasks
+          </button>
+        </form>
+<!-- This ul element contains a list of all tasks. -->
+        <ul>
+          <% for (let i of toDoLists){ %>
+
+          <li>
+            <input type="checkbox" name="" id="<%= i.id %>" />
+            <div class="todo-container">
+              <div class="todo-title"><%= i.toDoName%></div>
+              <div class="todo-date">
+                <i class="fa-solid fa-date"></i><%= i.date%>
+              </div>
+            </div>
+            <div class="catagory-edit-box">EDIT</div>
+            <div class="catagory-label-box"><%= i.category%></div>
+          </li>
+          <% } %>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>
